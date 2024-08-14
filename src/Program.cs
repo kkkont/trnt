@@ -2,12 +2,17 @@
 
 class Program {
 
+    private static BusyIntervalCalc calculator = new BusyIntervalCalc();
+
     static void Main(string[] args){
          
          if (args.Length > 0 && args[0] == "filename" && args.Length == 2){
             string filePath = args[1];
 
-            if (File.Exists(filePath)) AddIntervalFromFile(filePath); 
+            if (File.Exists(filePath)){
+                AddIntervalFromFile(filePath); 
+                calculator.CalculateBusiestPeriod();
+            }
             else Console.WriteLine("File not found.");
            
         }
@@ -19,7 +24,7 @@ class Program {
             if (input.ToLower() == "q") break;
 
             AddIntervalFromInput(input);
-            
+            calculator.CalculateBusiestPeriod();
         }
         
     }
@@ -44,6 +49,7 @@ class Program {
                 Console.WriteLine($"Start: {start}, End: {end}"); 
                 
                 var interval = new TimeInterval(start, end);
+                calculator.AddTimeInterval(interval);
             }
             else Console.WriteLine("Input must be in format HH:mmHH:mm with valid time values.");
         
