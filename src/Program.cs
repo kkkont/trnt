@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-class Program{
+class Program {
 
     static void Main(string[] args){
          
@@ -43,13 +43,7 @@ class Program{
                 string end = input.Substring(5, 5);  
                 Console.WriteLine($"Start: {start}, End: {end}"); 
                 
-                DateTime startTime = DateTime.ParseExact(start, "HH:mm", null);
-                DateTime endTime = DateTime.ParseExact(end, "HH:mm", null);
-
-                if (startTime > endTime) Console.WriteLine("Start time must be before or equal to end time.");
-                else{
-                        //Implement adding time interval logic
-                    }   
+                var interval = new TimeInterval(start, end);
             }
             else Console.WriteLine("Input must be in format HH:mmHH:mm with valid time values.");
         
